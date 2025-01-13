@@ -19,6 +19,7 @@ const Index = () => {
         className="absolute inset-0"
         style={{
           backgroundImage: 'radial-gradient(circle at 50% 50%, transparent 0%, #000 70%)',
+          animation: 'pulse 4s ease-in-out infinite'
         }}
       />
       <BackgroundMusic />
@@ -28,37 +29,37 @@ const Index = () => {
             src="/lovable-uploads/29ae0bf3-ef96-4b9c-a983-ff10498c750a.png"
             alt="Sam"
           />
-          <div className="flex items-center gap-2">
-            <Sword className="w-6 h-6 text-red-500" />
+          <div className="flex items-center gap-2 animate-bounce">
+            <Sword className="w-6 h-6 text-red-500 animate-pulse" />
             <h1 className="text-4xl font-bold text-white mt-4 tracking-wider" style={{
-              textShadow: '0 0 20px rgba(234, 56, 76, 0.5)'
+              textShadow: '0 0 20px rgba(234, 56, 76, 0.5), 0 0 40px rgba(234, 56, 76, 0.3)'
             }}>
               Sam
             </h1>
-            <Sword className="w-6 h-6 text-red-500 transform scale-x-[-1]" />
+            <Sword className="w-6 h-6 text-red-500 transform scale-x-[-1] animate-pulse" />
           </div>
-          <p className="text-lg text-red-300/80">
+          <p className="text-lg text-red-300/80 animate-fade-in">
             UI/UX Designer & Full-Stack Developer
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-in">
           <div className="flex flex-wrap justify-center gap-4 text-white/80">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover:scale-110 transition-transform duration-300 cursor-pointer">
               <Palette className="w-5 h-5 text-red-500" />
               <span>UI/UX Design</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover:scale-110 transition-transform duration-300 cursor-pointer">
               <Code className="w-5 h-5 text-red-500" />
               <span>Web & App Dev</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover:scale-110 transition-transform duration-300 cursor-pointer">
               <Gamepad className="w-5 h-5 text-red-500" />
               <span>Game Seller</span>
             </div>
           </div>
           
-          <p className="text-white/80 leading-relaxed">
+          <p className="text-white/80 leading-relaxed bg-black/30 p-4 rounded-lg backdrop-blur-sm border border-red-500/20">
             I'm a passionate developer and designer who brings creative visions to life. 
             With expertise in UI/UX design, web and app development, I create seamless 
             digital experiences that users love. I also have a keen interest in the gaming 
@@ -66,7 +67,7 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center animate-fade-in">
           <SocialLinks />
         </div>
       </div>
