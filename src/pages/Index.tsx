@@ -1,5 +1,6 @@
 import { Avatar } from "@/components/Avatar";
 import { SocialLinks } from "@/components/SocialLinks";
+import { Sword } from "lucide-react";
 
 const Index = () => {
   return (
@@ -17,11 +18,15 @@ const Index = () => {
             src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb"
             alt="Your Name"
           />
-          <h1 className="text-4xl font-bold text-white mt-4 tracking-wider" style={{
-            textShadow: '0 0 20px rgba(234, 56, 76, 0.5)'
-          }}>
-            Your Name
-          </h1>
+          <div className="flex items-center gap-2">
+            <Sword className="w-6 h-6 text-red-500" />
+            <h1 className="text-4xl font-bold text-white mt-4 tracking-wider" style={{
+              textShadow: '0 0 20px rgba(234, 56, 76, 0.5)'
+            }}>
+              Your Name
+            </h1>
+            <Sword className="w-6 h-6 text-red-500 transform scale-x-[-1]" />
+          </div>
           <p className="text-lg text-red-300/80">
             Frontend Developer & UI/UX Enthusiast
           </p>
