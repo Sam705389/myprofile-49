@@ -9,17 +9,17 @@ const Index = () => {
       <div 
         className="absolute inset-0 opacity-30"
         style={{
-          backgroundImage: `url('/lovable-uploads/29ae0bf3-ef96-4b9c-a983-ff10498c750a.png')`,
+          backgroundImage: `url('/lovable-uploads/11a8b27f-ceb0-48bf-b56f-5c3090d7ca0c.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(8px)',
+          filter: 'blur(4px)',
           animation: 'pulse 8s ease-in-out infinite'
         }}
       />
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle at 50% 50%, transparent 0%, #000 70%)',
+          backgroundImage: 'radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.8) 70%)',
           animation: 'pulse 4s ease-in-out infinite'
         }}
       />
