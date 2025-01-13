@@ -8,10 +8,10 @@ export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    // Create audio element with a more reliable audio source
-    audioRef.current = new Audio("https://docs.google.com/uc?export=download&id=1dmRVaKUXD6nGXoZYVxlqQN-NWh9EbHBc");
+    // Create audio element with a more reliable audio source and format
+    audioRef.current = new Audio("/lovable-uploads/background-music.mp3");
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.5; // Set a comfortable volume level
+    audioRef.current.volume = 0.5;
 
     // Try to autoplay immediately
     const attemptAutoplay = async () => {
@@ -22,6 +22,11 @@ export function BackgroundMusic() {
           console.log("Autoplay successful");
         } catch (error) {
           console.log("Autoplay failed, waiting for user interaction:", error);
+          toast({
+            title: "Music Playback",
+            description: "Click anywhere to start the background music",
+            duration: 5000,
+          });
           
           // Add click listener for user interaction
           const handleClick = async () => {
@@ -34,7 +39,7 @@ export function BackgroundMusic() {
                 console.error("Audio playback failed:", error);
                 toast({
                   title: "Playback Error",
-                  description: "There was an issue playing the music. Please try again.",
+                  description: "Please ensure your browser supports audio playback and try again.",
                   duration: 3000,
                 });
               }
@@ -72,7 +77,7 @@ export function BackgroundMusic() {
         console.error("Toggle playback failed:", error);
         toast({
           title: "Playback Error",
-          description: "Failed to play audio. Please try again.",
+          description: "Unable to play audio. Please check your browser settings.",
           duration: 3000,
         });
       }
