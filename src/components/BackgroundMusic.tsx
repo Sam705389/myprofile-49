@@ -1,19 +1,50 @@
 import { useState, useEffect, useRef } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, SkipForward } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
+const SONGS = [
+  {
+    url: "/lovable-uploads/background-music.mp3",
+    name: "Song 1"
+  },
+  {
+    url: "/lovable-uploads/background-music-2.mp3",
+    name: "Song 2"
+  }
+];
+
 export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
+  const switchSong = async () => {
+    const nextIndex = (currentSongIndex + 1) % SONGS.length;
+    setCurrentSongIndex(nextIndex);
+    
+    if (audioRef.current) {
+      audioRef.current.src = SONGS[nextIndex].url;
+      if (isPlaying) {
+        try {
+          await audioRef.current.play();
+          toast({
+            title: "Now Playing",
+            description: SONGS[nextIndex].name,
+            duration: 2000,
+          });
+        } catch (error) {
+          console.error("Failed to play next song:", error);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
-    // Create audio element with a more reliable audio source and format
-    audioRef.current = new Audio("/lovable-uploads/background-music.mp3");
+    audioRef.current = new Audio(SONGS[currentSongIndex].url);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
 
-    // Try to autoplay immediately
     const attemptAutoplay = async () => {
       if (audioRef.current) {
         try {
@@ -28,7 +59,6 @@ export function BackgroundMusic() {
             duration: 5000,
           });
           
-          // Add click listener for user interaction
           const handleClick = async () => {
             if (audioRef.current && !isPlaying) {
               try {
@@ -85,17 +115,27 @@ export function BackgroundMusic() {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="fixed bottom-4 right-4 bg-black/50 hover:bg-black/70 backdrop-blur-sm z-50 animate-pulse"
-      onClick={togglePlay}
-    >
-      {isPlaying ? (
-        <Volume2 className="h-6 w-6 text-red-500" />
-      ) : (
-        <VolumeX className="h-6 w-6 text-red-500" />
-      )}
-    </Button>
+    <div className="fixed bottom-4 right-4 flex gap-2 z-50">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm animate-pulse"
+        onClick={togglePlay}
+      >
+        {isPlaying ? (
+          <Volume2 className="h-6 w-6 text-red-500" />
+        ) : (
+          <VolumeX className="h-6 w-6 text-red-500" />
+        )}
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm"
+        onClick={switchSong}
+      >
+        <SkipForward className="h-6 w-6 text-red-500" />
+      </Button>
+    </div>
   );
 }
