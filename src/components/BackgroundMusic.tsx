@@ -8,9 +8,10 @@ export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    // Create audio element with the audio source
-    audioRef.current = new Audio("https://stream.mux.com/VZtzUzGRv01JXM6bZ3KxpVoXCZg4q01Pj5Eim2LaLuJE8.m4a");
+    // Create audio element with a more reliable audio source
+    audioRef.current = new Audio("https://docs.google.com/uc?export=download&id=1dmRVaKUXD6nGXoZYVxlqQN-NWh9EbHBc");
     audioRef.current.loop = true;
+    audioRef.current.volume = 0.5; // Set a comfortable volume level
 
     // Try to autoplay immediately
     const attemptAutoplay = async () => {
@@ -21,30 +22,21 @@ export function BackgroundMusic() {
           console.log("Autoplay successful");
         } catch (error) {
           console.log("Autoplay failed, waiting for user interaction:", error);
-          toast({
-            title: "Click to Enable Music",
-            description: "Browser requires user interaction to play audio. Click anywhere to start the music.",
-            duration: 5000,
-          });
-
+          
           // Add click listener for user interaction
-          const handleClick = () => {
+          const handleClick = async () => {
             if (audioRef.current && !isPlaying) {
-              const playPromise = audioRef.current.play();
-              if (playPromise !== undefined) {
-                playPromise
-                  .then(() => {
-                    setIsPlaying(true);
-                    console.log("Audio playback started after user interaction");
-                  })
-                  .catch(error => {
-                    console.error("Audio playback failed:", error);
-                    toast({
-                      title: "Playback Error",
-                      description: "There was an issue playing the music. Please try again.",
-                      duration: 3000,
-                    });
-                  });
+              try {
+                await audioRef.current.play();
+                setIsPlaying(true);
+                console.log("Audio playback started after user interaction");
+              } catch (error) {
+                console.error("Audio playback failed:", error);
+                toast({
+                  title: "Playback Error",
+                  description: "There was an issue playing the music. Please try again.",
+                  duration: 3000,
+                });
               }
             }
           };
@@ -64,29 +56,25 @@ export function BackgroundMusic() {
     };
   }, []);
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     if (audioRef.current) {
-      if (!isPlaying) {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-              console.log("Audio playback toggled on");
-            })
-            .catch(error => {
-              console.error("Toggle playback failed:", error);
-              toast({
-                title: "Playback Error",
-                description: "Failed to play audio. Please try again.",
-                duration: 3000,
-              });
-            });
+      try {
+        if (!isPlaying) {
+          await audioRef.current.play();
+          setIsPlaying(true);
+          console.log("Audio playback toggled on");
+        } else {
+          audioRef.current.pause();
+          setIsPlaying(false);
+          console.log("Audio playback toggled off");
         }
-      } else {
-        audioRef.current.pause();
-        setIsPlaying(false);
-        console.log("Audio playback toggled off");
+      } catch (error) {
+        console.error("Toggle playback failed:", error);
+        toast({
+          title: "Playback Error",
+          description: "Failed to play audio. Please try again.",
+          duration: 3000,
+        });
       }
     }
   };
