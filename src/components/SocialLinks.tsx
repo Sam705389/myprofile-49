@@ -1,4 +1,4 @@
-import { Github, Instagram, Link } from "lucide-react";
+import { Github, Instagram, Link, Gamepad } from "lucide-react";
 
 interface SocialLink {
   icon: JSX.Element;
@@ -19,9 +19,14 @@ export function SocialLinks() {
       label: "Instagram",
     },
     {
+      icon: <Gamepad className="w-6 h-6" />,
+      href: "https://yourgamestore.com",
+      label: "Game Store",
+    },
+    {
       icon: <Link className="w-6 h-6" />,
-      href: "https://yourwebsite.com",
-      label: "Website",
+      href: "https://yourportfolio.com",
+      label: "Portfolio",
     },
   ];
 
