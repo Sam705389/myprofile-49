@@ -8,14 +8,14 @@ export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio("/lovable-uploads/background-music.mp3");
+    // Create audio element with the new audio source
+    audioRef.current = new Audio("https://stream.mux.com/VZtzUzGRv01JXM6bZ3KxpVoXCZg4q01Pj5Eim2LaLuJE8.m4a");
     audioRef.current.loop = true;
     
     // Add click event listener to document for initial playback
     const handleClick = () => {
       if (audioRef.current && !isPlaying) {
-        audioRef.current.currentTime = 49;
+        audioRef.current.currentTime = 0; // Start from beginning for this song
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise
@@ -26,14 +26,21 @@ export function BackgroundMusic() {
             .catch(error => {
               console.error("Audio playback failed:", error);
               toast({
-                title: "Audio Playback Error",
-                description: "There was an issue playing the background music. Please try again.",
-                duration: 3000,
+                title: "Click to Play",
+                description: "Click anywhere to start the background music",
+                duration: 5000,
               });
             });
         }
       }
     };
+
+    // Show initial toast to inform user
+    toast({
+      title: "Background Music",
+      description: "Click anywhere to enable background music",
+      duration: 5000,
+    });
 
     document.addEventListener('click', handleClick, { once: true });
     
@@ -49,7 +56,6 @@ export function BackgroundMusic() {
   const togglePlay = () => {
     if (audioRef.current) {
       if (!isPlaying) {
-        audioRef.current.currentTime = 49;
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise
@@ -60,8 +66,8 @@ export function BackgroundMusic() {
             .catch(error => {
               console.error("Toggle playback failed:", error);
               toast({
-                title: "Playback Error",
-                description: "Failed to play audio. Please try again.",
+                title: "Click to Play",
+                description: "Click anywhere to start the background music",
                 duration: 3000,
               });
             });
