@@ -20,27 +20,26 @@ export function BackgroundMusic() {
     audio.volume = 0.5;
     audioRef.current = audio;
 
-    // Attempt to autoplay
-    const attemptAutoplay = async () => {
-      try {
-        await audio.play();
-        setIsPlaying(true);
-        toast({
-          title: "Now Playing",
-          description: SONGS[0].name,
-          duration: 2000,
+    // Add event listener for when the audio is ready to play
+    audio.addEventListener('canplaythrough', () => {
+      audio.play()
+        .then(() => {
+          setIsPlaying(true);
+          toast({
+            title: "Now Playing",
+            description: SONGS[0].name,
+            duration: 2000,
+          });
+        })
+        .catch((error) => {
+          console.error("Autoplay failed:", error);
+          toast({
+            title: "Music Ready",
+            description: "Click play to start the music",
+            duration: 3000,
+          });
         });
-      } catch (error) {
-        console.error("Autoplay failed:", error);
-        toast({
-          title: "Music Ready",
-          description: "Click play to start the music",
-          duration: 3000,
-        });
-      }
-    };
-
-    attemptAutoplay();
+    });
 
     // Clean up function
     return () => {
