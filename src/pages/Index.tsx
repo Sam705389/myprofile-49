@@ -32,21 +32,29 @@ const Index = () => {
               alt="Sam"
               className="transition-transform duration-500 hover:scale-105"
             />
+          </div>
+          <div className="flex items-center justify-center gap-3">
             <Crown 
-              className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 text-yellow-500 animate-pulse"
+              className="w-8 h-8 text-yellow-500 animate-pulse"
+              style={{
+                filter: 'drop-shadow(0 0 10px rgba(234, 207, 56, 0.5))'
+              }}
+            />
+            <h1 
+              className="text-4xl font-bold text-white tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-red-700"
+              style={{
+                textShadow: '0 0 20px rgba(234, 56, 76, 0.5), 0 0 40px rgba(234, 56, 76, 0.3)'
+              }}
+            >
+              Sam
+            </h1>
+            <Crown 
+              className="w-8 h-8 text-yellow-500 animate-pulse"
               style={{
                 filter: 'drop-shadow(0 0 10px rgba(234, 207, 56, 0.5))'
               }}
             />
           </div>
-          <h1 
-            className="text-4xl font-bold text-white mt-4 tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-red-700"
-            style={{
-              textShadow: '0 0 20px rgba(234, 56, 76, 0.5), 0 0 40px rgba(234, 56, 76, 0.3)'
-            }}
-          >
-            Sam
-          </h1>
           <p className="text-lg text-red-300/80 animate-fade-in font-semibold">
             UI/UX Designer & Full-Stack Developer
           </p>
