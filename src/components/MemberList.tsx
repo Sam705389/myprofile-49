@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Users, Crown, Gamepad, User, Instagram, Globe } from "lucide-react";
+import { Users, Crown, Gamepad, User, Instagram, Globe, UserCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 
@@ -16,7 +16,7 @@ const members = [
     role: "k2j Co-Owner",
     image: "/lovable-uploads/2e43b7a7-baeb-44d4-b2a0-b3507edcb1c7.png",
     initials: "K2J",
-    icons: [<Crown key="crown" className="h-5 w-5 text-yellow-500" />]
+    icons: [<UserCheck key="co-owner" className="h-5 w-5 text-blue-500" />]
   },
   {
     codeName: "Yashveer",
