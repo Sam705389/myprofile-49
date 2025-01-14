@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Play, Pause, SkipForward } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
@@ -7,50 +7,15 @@ const SONGS = [
   {
     url: "https://p320.djpunjab.is/data/48/56690/306239/DONALI%20-%20Harkirat%20Sangha.mp3",
     name: "Donali - Harkirat Sangha"
-  },
-  {
-    url: "/lovable-uploads/background-music.mp3",
-    name: "Song 1"
-  },
-  {
-    url: "/lovable-uploads/background-music-2.mp3",
-    name: "Song 2"
   }
 ];
 
 export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
-  const switchSong = async () => {
-    const nextIndex = (currentSongIndex + 1) % SONGS.length;
-    setCurrentSongIndex(nextIndex);
-    
-    if (audioRef.current) {
-      audioRef.current.src = SONGS[nextIndex].url;
-      if (isPlaying) {
-        try {
-          await audioRef.current.play();
-          toast({
-            title: "Now Playing",
-            description: SONGS[nextIndex].name,
-            duration: 2000,
-          });
-        } catch (error) {
-          console.error("Failed to play next song:", error);
-          toast({
-            title: "Playback Error",
-            description: "Unable to play the next song. Please try again.",
-            duration: 3000,
-          });
-        }
-      }
-    }
-  };
-
   useEffect(() => {
-    const audio = new Audio(SONGS[currentSongIndex].url);
+    const audio = new Audio(SONGS[0].url);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;
@@ -62,7 +27,7 @@ export function BackgroundMusic() {
         setIsPlaying(true);
         toast({
           title: "Now Playing",
-          description: SONGS[currentSongIndex].name,
+          description: SONGS[0].name,
           duration: 2000,
         });
       } catch (error) {
@@ -84,7 +49,7 @@ export function BackgroundMusic() {
         audioRef.current = null;
       }
     };
-  }, [currentSongIndex]);
+  }, []);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
@@ -95,7 +60,7 @@ export function BackgroundMusic() {
         setIsPlaying(true);
         toast({
           title: "Now Playing",
-          description: SONGS[currentSongIndex].name,
+          description: SONGS[0].name,
           duration: 2000,
         });
       } else {
@@ -118,7 +83,7 @@ export function BackgroundMusic() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 flex gap-2 z-50">
+    <div className="fixed bottom-4 right-4 z-50">
       <Button
         variant="ghost"
         size="icon"
@@ -130,14 +95,6 @@ export function BackgroundMusic() {
         ) : (
           <Play className="h-6 w-6 text-red-500" />
         )}
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm"
-        onClick={switchSong}
-      >
-        <SkipForward className="h-6 w-6 text-red-500" />
       </Button>
     </div>
   );
