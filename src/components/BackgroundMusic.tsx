@@ -55,6 +55,28 @@ export function BackgroundMusic() {
     audio.volume = 0.5;
     audioRef.current = audio;
 
+    // Attempt to autoplay
+    const attemptAutoplay = async () => {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+        toast({
+          title: "Now Playing",
+          description: SONGS[currentSongIndex].name,
+          duration: 2000,
+        });
+      } catch (error) {
+        console.error("Autoplay failed:", error);
+        toast({
+          title: "Music Ready",
+          description: "Click play to start the music",
+          duration: 3000,
+        });
+      }
+    };
+
+    attemptAutoplay();
+
     // Clean up function
     return () => {
       if (audioRef.current) {
@@ -62,7 +84,7 @@ export function BackgroundMusic() {
         audioRef.current = null;
       }
     };
-  }, [currentSongIndex]); // Re-create audio element when song changes
+  }, [currentSongIndex]);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
