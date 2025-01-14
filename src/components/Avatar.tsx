@@ -8,7 +8,7 @@ interface AvatarProps {
 
 export function Avatar({ src, alt, className }: AvatarProps) {
   return (
-    <div className={cn("avatar-container", className)}>
+    <div className={cn("relative", className)}>
       <img
         src={src}
         alt={alt}
