@@ -20,26 +20,26 @@ interface SocialLink {
 export function SocialLinks() {
   const links: SocialLink[] = [
     {
-      icon: <Github className="w-6 h-6" />,
+      icon: <Github className="w-5 h-5 sm:w-6 sm:h-6" />,
       href: "#",
       label: "GitHub",
       comingSoon: true,
       message: "I will be creating my GitHub account soon to showcase my projects!"
     },
     {
-      icon: <Instagram className="w-6 h-6" />,
+      icon: <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />,
       href: "https://www.instagram.com/gamer_addaz/",
       label: "Instagram"
     },
     {
-      icon: <Gamepad className="w-6 h-6" />,
+      icon: <Gamepad className="w-5 h-5 sm:w-6 sm:h-6" />,
       href: "#",
       label: "Game Store",
       comingSoon: true,
       message: "My game store is under development. Check back soon to explore amazing games!"
     },
     {
-      icon: <Link className="w-6 h-6" />,
+      icon: <Link className="w-5 h-5 sm:w-6 sm:h-6" />,
       href: "#",
       label: "Portfolio",
       comingSoon: true,
@@ -48,7 +48,7 @@ export function SocialLinks() {
   ];
 
   return (
-    <div className="flex gap-6 mt-6">
+    <div className="flex gap-4 sm:gap-6 mt-4 sm:mt-6">
       {links.map((link) => (
         link.comingSoon ? (
           <AlertDialog key={link.label}>
@@ -57,10 +57,10 @@ export function SocialLinks() {
                 {link.icon}
               </button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="bg-black/90 border border-red-500/30">
+            <AlertDialogContent className="bg-black/90 border border-red-500/30 mx-4 sm:mx-0">
               <AlertDialogHeader>
-                <AlertDialogTitle className="text-xl text-red-500">{link.label} - Coming Soon!</AlertDialogTitle>
-                <p className="text-sm text-white/80">
+                <AlertDialogTitle className="text-lg sm:text-xl text-red-500">{link.label} - Coming Soon!</AlertDialogTitle>
+                <p className="text-xs sm:text-sm text-white/80">
                   {link.message}
                 </p>
               </AlertDialogHeader>

@@ -12,7 +12,7 @@ export function Avatar({ src, alt, className }: AvatarProps) {
       <img
         src={src}
         alt={alt}
-        className="w-32 h-32 rounded-full border-4 border-red-500/50 shadow-2xl"
+        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-red-500/50 shadow-2xl"
         style={{
           boxShadow: '0 0 30px rgba(234, 56, 76, 0.3), inset 0 0 20px rgba(234, 56, 76, 0.3)',
           filter: 'drop-shadow(0 0 10px rgba(234, 56, 76, 0.2))'
