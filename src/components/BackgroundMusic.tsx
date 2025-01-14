@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Volume2, VolumeX, SkipForward } from "lucide-react";
+import { Play, Pause, SkipForward } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
@@ -35,82 +35,59 @@ export function BackgroundMusic() {
           });
         } catch (error) {
           console.error("Failed to play next song:", error);
+          toast({
+            title: "Playback Error",
+            description: "Unable to play the next song. Please try again.",
+            duration: 3000,
+          });
         }
       }
     }
   };
 
   useEffect(() => {
-    audioRef.current = new Audio(SONGS[currentSongIndex].url);
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
+    const audio = new Audio(SONGS[currentSongIndex].url);
+    audio.loop = true;
+    audio.volume = 0.5;
+    audioRef.current = audio;
 
-    const attemptAutoplay = async () => {
-      if (audioRef.current) {
-        try {
-          await audioRef.current.play();
-          setIsPlaying(true);
-          console.log("Autoplay successful");
-        } catch (error) {
-          console.log("Autoplay failed, waiting for user interaction:", error);
-          toast({
-            title: "Music Playback",
-            description: "Click anywhere to start the background music",
-            duration: 5000,
-          });
-          
-          const handleClick = async () => {
-            if (audioRef.current && !isPlaying) {
-              try {
-                await audioRef.current.play();
-                setIsPlaying(true);
-                console.log("Audio playback started after user interaction");
-              } catch (error) {
-                console.error("Audio playback failed:", error);
-                toast({
-                  title: "Playback Error",
-                  description: "Please ensure your browser supports audio playback and try again.",
-                  duration: 3000,
-                });
-              }
-            }
-          };
-
-          document.addEventListener('click', handleClick, { once: true });
-        }
-      }
-    };
-
-    attemptAutoplay();
-    
+    // Clean up function
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, []);
+  }, [currentSongIndex]); // Re-create audio element when song changes
 
   const togglePlay = async () => {
-    if (audioRef.current) {
-      try {
-        if (!isPlaying) {
-          await audioRef.current.play();
-          setIsPlaying(true);
-          console.log("Audio playback toggled on");
-        } else {
-          audioRef.current.pause();
-          setIsPlaying(false);
-          console.log("Audio playback toggled off");
-        }
-      } catch (error) {
-        console.error("Toggle playback failed:", error);
+    if (!audioRef.current) return;
+
+    try {
+      if (!isPlaying) {
+        await audioRef.current.play();
+        setIsPlaying(true);
         toast({
-          title: "Playback Error",
-          description: "Unable to play audio. Please check your browser settings.",
-          duration: 3000,
+          title: "Now Playing",
+          description: SONGS[currentSongIndex].name,
+          duration: 2000,
+        });
+      } else {
+        audioRef.current.pause();
+        setIsPlaying(false);
+        toast({
+          title: "Paused",
+          description: "Music playback paused",
+          duration: 2000,
         });
       }
+    } catch (error) {
+      console.error("Playback error:", error);
+      toast({
+        title: "Playback Error",
+        description: "Please click the play button to start the music",
+        duration: 3000,
+      });
     }
   };
 
@@ -119,13 +96,13 @@ export function BackgroundMusic() {
       <Button
         variant="ghost"
         size="icon"
-        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm animate-pulse"
+        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm"
         onClick={togglePlay}
       >
         {isPlaying ? (
-          <Volume2 className="h-6 w-6 text-red-500" />
+          <Pause className="h-6 w-6 text-red-500" />
         ) : (
-          <VolumeX className="h-6 w-6 text-red-500" />
+          <Play className="h-6 w-6 text-red-500" />
         )}
       </Button>
       <Button
