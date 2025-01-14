@@ -5,6 +5,10 @@ import { toast } from "./ui/use-toast";
 
 const SONGS = [
   {
+    url: "https://p320.djpunjab.is/data/48/56690/306239/DONALI%20-%20Harkirat%20Sangha.mp3",
+    name: "Donali - Harkirat Sangha"
+  },
+  {
     url: "/lovable-uploads/background-music.mp3",
     name: "Song 1"
   },
