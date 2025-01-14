@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Users, Crown, Gamepad, User, Instagram, Steam } from "lucide-react";
+import { Users, Crown, Gamepad, User, Instagram, Globe } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 
@@ -24,7 +24,7 @@ const members = [
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
     initials: "YV",
     icons: [
-      <Steam key="steam" className="h-5 w-5 text-blue-500" />,
+      <Globe key="steam" className="h-5 w-5 text-blue-500" />,
       <Instagram key="instagram" className="h-5 w-5 text-pink-500" />
     ]
   },
