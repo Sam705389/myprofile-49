@@ -1,6 +1,7 @@
 import { Avatar } from "@/components/Avatar";
 import { SocialLinks } from "@/components/SocialLinks";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
+import { MemberList } from "@/components/MemberList";
 import { Crown, Code, Palette, Gamepad } from "lucide-react";
 
 const Index = () => {
@@ -35,6 +36,7 @@ const Index = () => {
       />
       
       <BackgroundMusic />
+      <MemberList />
       
       <div className="glass-card p-6 sm:p-8 max-w-2xl w-full mx-auto space-y-6 sm:space-y-8 relative">
         <div className="flex flex-col items-center text-center space-y-4 sm:space-y-6">
