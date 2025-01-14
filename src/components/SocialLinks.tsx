@@ -1,11 +1,20 @@
 import { Github, Instagram, Link, Gamepad } from "lucide-react";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { 
+  AlertDialog, 
+  AlertDialogContent, 
+  AlertDialogHeader, 
+  AlertDialogTitle, 
+  AlertDialogTrigger,
+  AlertDialogFooter,
+  AlertDialogAction
+} from "@/components/ui/alert-dialog";
 
 interface SocialLink {
   icon: JSX.Element;
   href: string;
   label: string;
   comingSoon?: boolean;
+  message?: string;
 }
 
 export function SocialLinks() {
@@ -14,7 +23,8 @@ export function SocialLinks() {
       icon: <Github className="w-6 h-6" />,
       href: "#",
       label: "GitHub",
-      comingSoon: true
+      comingSoon: true,
+      message: "I will be creating my GitHub account soon to showcase my projects!"
     },
     {
       icon: <Instagram className="w-6 h-6" />,
@@ -25,13 +35,15 @@ export function SocialLinks() {
       icon: <Gamepad className="w-6 h-6" />,
       href: "#",
       label: "Game Store",
-      comingSoon: true
+      comingSoon: true,
+      message: "My game store is under development. Check back soon to explore amazing games!"
     },
     {
       icon: <Link className="w-6 h-6" />,
       href: "#",
       label: "Portfolio",
-      comingSoon: true
+      comingSoon: true,
+      message: "My portfolio website is currently being built. Stay tuned for an amazing showcase of my work!"
     },
   ];
 
@@ -45,13 +57,18 @@ export function SocialLinks() {
                 {link.icon}
               </button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="bg-black/90 border border-red-500/30">
               <AlertDialogHeader>
-                <AlertDialogTitle>Coming Soon!</AlertDialogTitle>
-                <p className="text-sm text-muted-foreground">
-                  This feature is currently under development. Please check back later!
+                <AlertDialogTitle className="text-xl text-red-500">{link.label} - Coming Soon!</AlertDialogTitle>
+                <p className="text-sm text-white/80">
+                  {link.message}
                 </p>
               </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction className="bg-red-500 hover:bg-red-600 text-white">
+                  Back
+                </AlertDialogAction>
+              </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
         ) : (
