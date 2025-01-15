@@ -14,12 +14,13 @@ function App() {
         <Route path="/members" element={<Index />} />
         <Route
           path="/member/:codeName"
-          element={
-            <MemberWrapper />
-          }
+          element={<MemberWrapper />}
         />
       </Routes>
       <Toaster />
+      <div className="fixed bottom-4 left-4 z-50">
+        <Index />
+      </div>
     </Router>
   );
 }
