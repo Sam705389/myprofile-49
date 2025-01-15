@@ -68,7 +68,10 @@ export function MemberList() {
         </DialogHeader>
         <div className="space-y-6">
           {members.map((member, index) => (
-            <Link to={`/member/${member.codeName.toLowerCase()}`} key={index}>
+            <Link 
+              to={`/member/${member.codeName.toLowerCase()}`} 
+              key={index}
+            >
               <div
                 className="group flex items-start gap-4 p-4 rounded-lg bg-black/50 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:bg-black/60 cursor-pointer"
               >
