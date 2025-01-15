@@ -3,29 +3,31 @@ import { Play, Pause } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
-interface BackgroundMusicProps {
-  songUrl?: string;
-}
+const SONGS = [
+  {
+    url: "https://p320.djpunjab.is/data/48/56690/306239/DONALI%20-%20Harkirat%20Sangha.mp3",
+    name: "Donali - Harkirat Sangha"
+  }
+];
 
-export function BackgroundMusic({ songUrl }: BackgroundMusicProps) {
+export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    if (!songUrl) return;
-    
-    const audio = new Audio(songUrl);
+    const audio = new Audio(SONGS[0].url);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;
 
+    // Add event listener for when the audio is ready to play
     audio.addEventListener('canplaythrough', () => {
       audio.play()
         .then(() => {
           setIsPlaying(true);
           toast({
             title: "Now Playing",
-            description: "Music started",
+            description: SONGS[0].name,
             duration: 2000,
           });
         })
@@ -39,13 +41,14 @@ export function BackgroundMusic({ songUrl }: BackgroundMusicProps) {
         });
     });
 
+    // Clean up function
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, [songUrl]);
+  }, []);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
@@ -56,7 +59,7 @@ export function BackgroundMusic({ songUrl }: BackgroundMusicProps) {
         setIsPlaying(true);
         toast({
           title: "Now Playing",
-          description: "Music started",
+          description: SONGS[0].name,
           duration: 2000,
         });
       } else {
@@ -77,8 +80,6 @@ export function BackgroundMusic({ songUrl }: BackgroundMusicProps) {
       });
     }
   };
-
-  if (!songUrl) return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

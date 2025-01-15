@@ -2,19 +2,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Users, Crown, Gamepad, User, Instagram, Globe, UserCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
-import { useNavigate } from "react-router-dom";
 
 const members = [
-  {
-    codeName: "Sam",
-    role: "Owner",
-    image: "/lovable-uploads/29ae0bf3-ef96-4b9c-a983-ff10498c750a.png",
-    initials: "S",
-    description: "As the owner and leader of the team, I oversee all operations and drive our vision forward. My expertise in UI/UX design and full-stack development helps shape our digital presence.",
-    responsibilities: ["Team Leadership", "Technical Direction", "Product Strategy"],
-    icons: [<Crown key="crown" className="h-5 w-5 text-yellow-500" />],
-    path: "sam"
-  },
   {
     codeName: "NameLess",
     role: "My Right Hand",
@@ -22,8 +11,7 @@ const members = [
     initials: "NL",
     description: "As the right hand of the team, I handle crucial decisions and support the team's vision. My role involves strategic planning and ensuring smooth operations across all our platforms.",
     responsibilities: ["Team Management", "Strategic Planning", "Decision Making"],
-    icons: [<Crown key="crown" className="h-5 w-5 text-yellow-500" />],
-    path: "nameless"
+    icons: [<Crown key="crown" className="h-5 w-5 text-yellow-500" />]
   },
   {
     codeName: "k2jGaming",
@@ -32,8 +20,7 @@ const members = [
     initials: "K2J",
     description: "As co-owner of k2j, I work alongside the team to drive our gaming community forward. I focus on community engagement and growth strategies.",
     responsibilities: ["Community Management", "Business Development", "Content Strategy"],
-    icons: [<UserCheck key="co-owner" className="h-5 w-5 text-blue-500" />],
-    path: "k2jgaming"
+    icons: [<UserCheck key="co-owner" className="h-5 w-5 text-blue-500" />]
   },
   {
     codeName: "Yashveer",
@@ -59,12 +46,6 @@ const members = [
 ];
 
 export function MemberList() {
-  const navigate = useNavigate();
-
-  const handleMemberClick = (path: string) => {
-    navigate(`/member/${path}`);
-  };
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -82,34 +63,76 @@ export function MemberList() {
         </DialogHeader>
         <div className="space-y-6">
           {members.map((member, index) => (
-            <div
-              key={index}
-              className="group flex items-start gap-4 p-4 rounded-lg bg-black/50 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:bg-black/60 cursor-pointer"
-              onClick={() => handleMemberClick(member.path)}
-            >
-              <Avatar className="h-16 w-16 border-2 border-red-500/30 group-hover:border-red-500/50 transition-all duration-300">
-                <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
-                <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="text-lg font-semibold text-red-500 group-hover:text-red-400 transition-colors">
-                    {member.codeName}
-                  </h3>
-                  <div className="flex gap-1.5">
-                    {member.icons.map((icon, iconIndex) => (
-                      <div 
-                        key={iconIndex}
-                        className="transition-transform duration-300 hover:scale-110"
-                      >
-                        {icon}
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <div
+                  className="group flex items-start gap-4 p-4 rounded-lg bg-black/50 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:bg-black/60 cursor-pointer"
+                >
+                  <Avatar className="h-16 w-16 border-2 border-red-500/30 group-hover:border-red-500/50 transition-all duration-300">
+                    <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
+                    <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-lg font-semibold text-red-500 group-hover:text-red-400 transition-colors">
+                        {member.codeName}
+                      </h3>
+                      <div className="flex gap-1.5">
+                        {member.icons.map((icon, iconIndex) => (
+                          <div 
+                            key={iconIndex}
+                            className="transition-transform duration-300 hover:scale-110"
+                          >
+                            {icon}
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+                    <p className="text-sm text-red-300/70 mt-1">{member.role}</p>
                   </div>
                 </div>
-                <p className="text-sm text-red-300/70 mt-1">{member.role}</p>
-              </div>
-            </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md bg-black/90 backdrop-blur-xl border border-red-500/20">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-red-500 flex items-center gap-3">
+                    {member.codeName}
+                    <div className="flex gap-1.5">
+                      {member.icons.map((icon, iconIndex) => (
+                        <div key={iconIndex} className="transition-transform duration-300">
+                          {icon}
+                        </div>
+                      ))}
+                    </div>
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-20 w-20 border-2 border-red-500/30">
+                      <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
+                      <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-400">{member.role}</h4>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <p className="text-red-300/90 leading-relaxed">
+                      {member.description}
+                    </p>
+                    <div>
+                      <h5 className="text-red-400 font-semibold mb-2">Responsibilities:</h5>
+                      <ul className="list-disc list-inside space-y-1">
+                        {member.responsibilities.map((responsibility, index) => (
+                          <li key={index} className="text-red-300/80">
+                            {responsibility}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </DialogContent>
