@@ -2,9 +2,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Users, Crown, Gamepad, User, Instagram, Globe, UserCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
-import { Link } from "react-router-dom";
 
-export const members = [
+const members = [
   {
     codeName: "NameLess",
     role: "My Right Hand",
@@ -21,11 +20,7 @@ export const members = [
     initials: "K2J",
     description: "As co-owner of k2j, I work alongside the team to drive our gaming community forward. I focus on community engagement and growth strategies.",
     responsibilities: ["Community Management", "Business Development", "Content Strategy"],
-    icons: [<UserCheck key="co-owner" className="h-5 w-5 text-blue-500" />],
-    music: {
-      url: "https://s320.djpunjab.is/data/48/55537/304551/Winning%20Speech%20-%20Karan%20Aujla.mp3",
-      name: "Winning Speech - Karan Aujla"
-    }
+    icons: [<UserCheck key="co-owner" className="h-5 w-5 text-blue-500" />]
   },
   {
     codeName: "Yashveer",
@@ -68,37 +63,76 @@ export function MemberList() {
         </DialogHeader>
         <div className="space-y-6">
           {members.map((member, index) => (
-            <Link 
-              to={`/member/${member.codeName.toLowerCase()}`} 
-              key={index}
-            >
-              <div
-                className="group flex items-start gap-4 p-4 rounded-lg bg-black/50 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:bg-black/60 cursor-pointer"
-              >
-                <Avatar className="h-16 w-16 border-2 border-red-500/30 group-hover:border-red-500/50 transition-all duration-300">
-                  <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
-                  <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-lg font-semibold text-red-500 group-hover:text-red-400 transition-colors">
-                      {member.codeName}
-                    </h3>
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <div
+                  className="group flex items-start gap-4 p-4 rounded-lg bg-black/50 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 hover:bg-black/60 cursor-pointer"
+                >
+                  <Avatar className="h-16 w-16 border-2 border-red-500/30 group-hover:border-red-500/50 transition-all duration-300">
+                    <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
+                    <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-lg font-semibold text-red-500 group-hover:text-red-400 transition-colors">
+                        {member.codeName}
+                      </h3>
+                      <div className="flex gap-1.5">
+                        {member.icons.map((icon, iconIndex) => (
+                          <div 
+                            key={iconIndex}
+                            className="transition-transform duration-300 hover:scale-110"
+                          >
+                            {icon}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-sm text-red-300/70 mt-1">{member.role}</p>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md bg-black/90 backdrop-blur-xl border border-red-500/20">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-red-500 flex items-center gap-3">
+                    {member.codeName}
                     <div className="flex gap-1.5">
                       {member.icons.map((icon, iconIndex) => (
-                        <div 
-                          key={iconIndex}
-                          className="transition-transform duration-300 hover:scale-110"
-                        >
+                        <div key={iconIndex} className="transition-transform duration-300">
                           {icon}
                         </div>
                       ))}
                     </div>
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-20 w-20 border-2 border-red-500/30">
+                      <AvatarImage src={member.image} alt={member.codeName} className="object-cover" />
+                      <AvatarFallback className="bg-red-950 text-red-500">{member.initials}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-400">{member.role}</h4>
+                    </div>
                   </div>
-                  <p className="text-sm text-red-300/70 mt-1">{member.role}</p>
+                  <div className="space-y-4">
+                    <p className="text-red-300/90 leading-relaxed">
+                      {member.description}
+                    </p>
+                    <div>
+                      <h5 className="text-red-400 font-semibold mb-2">Responsibilities:</h5>
+                      <ul className="list-disc list-inside space-y-1">
+                        {member.responsibilities.map((responsibility, index) => (
+                          <li key={index} className="text-red-300/80">
+                            {responsibility}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </DialogContent>

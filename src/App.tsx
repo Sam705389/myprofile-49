@@ -1,41 +1,34 @@
-import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import { MemberPage } from "./components/MemberPage";
-import { members } from "./components/MemberList";
-import { Toaster } from "./components/ui/toaster";
 
-function App() {
-  const namelessMember = members.find(m => m.codeName === "NameLess");
+const App = () => {
+  // Move queryClient inside component to ensure proper React context
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000,
+        retry: 1
+      }
+    }
+  });
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MemberPage member={namelessMember!} />} />
-        <Route path="/members" element={<Index />} />
-        <Route
-          path="/member/:codeName"
-          element={<MemberWrapper />}
-        />
-      </Routes>
-      <Toaster />
-      <div className="fixed bottom-4 left-4 z-50">
-        <Index />
-      </div>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
-}
-
-function MemberWrapper() {
-  const { codeName } = useParams();
-  const member = members.find(
-    (m) => m.codeName.toLowerCase() === codeName?.toLowerCase()
-  );
-
-  if (!member) {
-    return <div>Member not found</div>;
-  }
-
-  return <MemberPage member={member} />;
-}
+};
 
 export default App;
