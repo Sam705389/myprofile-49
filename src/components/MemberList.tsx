@@ -6,6 +6,15 @@ import { Link } from "react-router-dom";
 
 export const members = [
   {
+    codeName: "Sam",
+    role: "Owner",
+    image: "/lovable-uploads/17d10083-51a7-4d74-986c-6b73a5950f5f.png",
+    initials: "S",
+    description: "As the owner and leader of the team, I oversee all operations and guide our vision forward. My role involves strategic decision-making and ensuring the team's success.",
+    responsibilities: ["Team Leadership", "Strategic Direction", "Final Decision Making"],
+    icons: [<Crown key="crown" className="h-5 w-5 text-yellow-500" />]
+  },
+  {
     codeName: "NameLess",
     role: "My Right Hand",
     image: "/lovable-uploads/17d10083-51a7-4d74-986c-6b73a5950f5f.png",
