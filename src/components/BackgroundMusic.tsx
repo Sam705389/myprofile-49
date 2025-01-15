@@ -3,31 +3,29 @@ import { Play, Pause } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
-const SONGS = [
-  {
-    url: "https://p320.djpunjab.is/data/48/56690/306239/DONALI%20-%20Harkirat%20Sangha.mp3",
-    name: "Donali - Harkirat Sangha"
-  }
-];
+interface BackgroundMusicProps {
+  songUrl?: string;
+}
 
-export function BackgroundMusic() {
+export function BackgroundMusic({ songUrl }: BackgroundMusicProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    const audio = new Audio(SONGS[0].url);
+    if (!songUrl) return;
+    
+    const audio = new Audio(songUrl);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;
 
-    // Add event listener for when the audio is ready to play
     audio.addEventListener('canplaythrough', () => {
       audio.play()
         .then(() => {
           setIsPlaying(true);
           toast({
             title: "Now Playing",
-            description: SONGS[0].name,
+            description: "Music started",
             duration: 2000,
           });
         })
@@ -41,14 +39,13 @@ export function BackgroundMusic() {
         });
     });
 
-    // Clean up function
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, []);
+  }, [songUrl]);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
@@ -59,7 +56,7 @@ export function BackgroundMusic() {
         setIsPlaying(true);
         toast({
           title: "Now Playing",
-          description: SONGS[0].name,
+          description: "Music started",
           duration: 2000,
         });
       } else {
@@ -80,6 +77,8 @@ export function BackgroundMusic() {
       });
     }
   };
+
+  if (!songUrl) return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

@@ -2,11 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
+import MemberPage from "./pages/MemberPage";
 
 const App = () => {
-  // Move queryClient inside component to ensure proper React context
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -23,7 +23,8 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<Navigate to="/member/sam" replace />} />
+            <Route path="/member/:memberId" element={<MemberPage />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
