@@ -11,16 +11,25 @@ const memberData = {
     role: "UI/UX Designer & Full-Stack Developer",
     avatar: "/lovable-uploads/29ae0bf3-ef96-4b9c-a983-ff10498c750a.png",
     music: "https://p320.djpunjab.is/data/48/56690/306239/DONALI%20-%20Harkirat%20Sangha.mp3",
-    skills: ["UI/UX Design", "Web & App Dev", "Game Seller"]
+    skills: ["UI/UX Design", "Web & App Dev", "Game Seller"],
+    description: "As the owner and leader of the team, I oversee all operations and drive our vision forward. My expertise in UI/UX design and full-stack development helps shape our digital presence."
   },
   k2jgaming: {
     name: "k2jGaming",
     role: "k2j Co-Owner",
     avatar: "/lovable-uploads/2e43b7a7-baeb-44d4-b2a0-b3507edcb1c7.png",
     music: "https://s320.djpunjab.is/data/48/55537/304551/Winning%20Speech%20-%20Karan%20Aujla.mp3",
-    skills: ["Community Management", "Business Development", "Content Strategy"]
+    skills: ["Community Management", "Business Development", "Content Strategy"],
+    description: "As co-owner of k2j, I work alongside the team to drive our gaming community forward. I focus on community engagement and growth strategies."
   },
-  // ... Add other members here
+  nameless: {
+    name: "NameLess",
+    role: "My Right Hand",
+    avatar: "/lovable-uploads/17d10083-51a7-4d74-986c-6b73a5950f5f.png",
+    music: "https://example.com/nameless-song.mp3",
+    skills: ["Team Management", "Strategic Planning", "Decision Making"],
+    description: "As the right hand of the team, I handle crucial decisions and support the team's vision. My role involves strategic planning and ensuring smooth operations across all our platforms."
+  }
 };
 
 const MemberPage = () => {
@@ -94,6 +103,10 @@ const MemberPage = () => {
           
           <p className="text-base sm:text-lg text-red-300/90 animate-fade-in font-semibold tracking-wide">
             {member.role}
+          </p>
+
+          <p className="text-base text-red-300/80 max-w-prose animate-fade-in">
+            {member.description}
           </p>
         </div>
 
