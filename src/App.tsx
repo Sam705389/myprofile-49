@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Index } from "./pages/Index";
+import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import Index from "./pages/Index";
 import { MemberPage } from "./components/MemberPage";
 import { members } from "./components/MemberList";
 import { Toaster } from "./components/ui/toaster";
