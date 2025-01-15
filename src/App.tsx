@@ -5,12 +5,12 @@ import { members } from "./components/MemberList";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
-  const namelessMember = members.find(m => m.codeName === "NameLess");
+  const samMember = members.find(m => m.codeName === "Sam");
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MemberPage member={namelessMember!} />} />
+        <Route path="/" element={<MemberPage member={samMember!} />} />
         <Route path="/members" element={<Index />} />
         <Route
           path="/member/:codeName"
