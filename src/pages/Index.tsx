@@ -17,7 +17,7 @@ const Index = () => {
     if (!appId.trim()) {
       toast.error("Please Put App ID So I Can Find The Game Pookie", {
         icon: <AlertOctagon className="text-red-500" />,
-        duration: 3000, // 3 seconds
+        duration: 3000,
       });
       return;
     }
@@ -32,7 +32,7 @@ const Index = () => {
         loading: 'Finding the game...',
         success: 'Game found!',
         error: 'Error finding game',
-        duration: 3000, // 3 seconds
+        duration: 3000,
       }
     );
 
@@ -57,21 +57,21 @@ const Index = () => {
         }}
       />
       
+      {/* Avatar moved outside the glass card */}
+      <div className="fixed left-8 top-8">
+        <Avatar 
+          src="/lovable-uploads/8a303788-b4cf-48d3-a2fc-0f03bfef1b2b.png" 
+          alt="Profile Avatar"
+          className="avatar-container"
+        />
+      </div>
+      
       <MemberList />
       
       <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/70 rounded-xl backdrop-blur-sm" />
         
         <div className="relative space-y-6">
-          {/* Avatar added here */}
-          <div className="absolute -left-16 -top-16">
-            <Avatar 
-              src="/lovable-uploads/8a303788-b4cf-48d3-a2fc-0f03bfef1b2b.png" 
-              alt="Profile Avatar"
-              className="avatar-container"
-            />
-          </div>
-
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="relative">
               <h1 
