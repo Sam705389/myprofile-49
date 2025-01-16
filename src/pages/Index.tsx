@@ -16,6 +16,7 @@ const Index = () => {
     if (!appId.trim()) {
       toast.error("Please Put App ID So I Can Find The Game Pookie", {
         icon: <AlertOctagon className="text-red-500" />,
+        duration: 3000, // 3 seconds
       });
       return;
     }
@@ -30,6 +31,7 @@ const Index = () => {
         loading: 'Finding the game...',
         success: 'Game found!',
         error: 'Error finding game',
+        duration: 3000, // 3 seconds
       }
     );
 
