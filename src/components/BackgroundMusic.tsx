@@ -52,7 +52,7 @@ export function BackgroundMusic() {
             .catch((error) => {
               console.error("Auto-play error:", error);
               toast.error("Unable to auto-play. Please try playing manually.", {
-                duration: 3000
+                duration: 2500
               });
             });
         }
@@ -70,7 +70,7 @@ export function BackgroundMusic() {
   const togglePlay = async () => {
     if (!audioRef.current || !songUrl) {
       toast.error("Please select a song first", {
-        duration: 3000
+        duration: 2500
       });
       return;
     }
@@ -95,7 +95,7 @@ export function BackgroundMusic() {
     } catch (error) {
       console.error("Playback error:", error);
       toast.error("Unable to play this audio. Please try another song.", {
-        duration: 3000
+        duration: 2500
       });
     }
   };
@@ -115,7 +115,7 @@ export function BackgroundMusic() {
       audio.onerror = (e) => {
         console.error("Audio error:", e);
         toast.error("Unable to play this song. Please try another one.", {
-          duration: 3000
+          duration: 2500
         });
         setSongUrl("");
         setCurrentSong("");
