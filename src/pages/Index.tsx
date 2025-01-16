@@ -5,6 +5,7 @@ import VisitorCounter from "@/components/VisitorCounter";
 import { MemberList } from "@/components/MemberList";
 import { Search, GamepadIcon, AlertOctagon } from "lucide-react";
 import { toast } from "sonner";
+import { Avatar } from "@/components/Avatar";
 
 const Index = () => {
   const [appId, setAppId] = useState("");
@@ -62,6 +63,15 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/70 rounded-xl backdrop-blur-sm" />
         
         <div className="relative space-y-6">
+          {/* Avatar added here */}
+          <div className="absolute -left-16 -top-16">
+            <Avatar 
+              src="/lovable-uploads/8a303788-b4cf-48d3-a2fc-0f03bfef1b2b.png" 
+              alt="Profile Avatar"
+              className="avatar-container"
+            />
+          </div>
+
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="relative">
               <h1 
