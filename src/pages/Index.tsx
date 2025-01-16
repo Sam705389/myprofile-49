@@ -6,6 +6,7 @@ import { MemberList } from "@/components/MemberList";
 import { Search, GamepadIcon, AlertOctagon } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
+import { BackgroundMusic } from "@/components/BackgroundMusic";
 
 const Index = () => {
   const [appId, setAppId] = useState("");
@@ -46,6 +47,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-black p-4 overflow-hidden">
       <VisitorCounter />
+      <BackgroundMusic />
       <div 
         className="absolute inset-0 opacity-25"
         style={{
