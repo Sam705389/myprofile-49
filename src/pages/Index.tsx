@@ -57,18 +57,17 @@ const Index = () => {
         }}
       />
       
-      {/* Avatar moved outside the glass card */}
       <div className="fixed left-8 top-8">
         <Avatar 
           src="/lovable-uploads/8a303788-b4cf-48d3-a2fc-0f03bfef1b2b.png" 
           alt="Profile Avatar"
-          className="avatar-container"
+          className="w-24 h-24 sm:w-32 sm:h-32"
         />
       </div>
       
       <MemberList />
       
-      <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10">
+      <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10 mt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/70 rounded-xl backdrop-blur-sm" />
         
         <div className="relative space-y-6">
