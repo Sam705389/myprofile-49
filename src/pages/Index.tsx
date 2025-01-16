@@ -29,10 +29,9 @@ const Index = () => {
 
     setIsSearching(true);
     const timestamp = new Date().toLocaleString();
-    const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
     
-    // Log the search attempt
-    setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
+    // Log only the APP ID search attempt without the URL
+    setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId}`, ...prev]);
 
     // Simulate a brief delay to check availability (500ms)
     setTimeout(() => {
@@ -41,7 +40,7 @@ const Index = () => {
         toast.success("Download should have started!", {
           duration: 2500,
         });
-        window.location.href = fullUrl;
+        window.location.href = `https://cysaw.top/uploads/${appId}.zip`;
       } else {
         toast.error("Game not available! Please check the game list.", {
           duration: 2500,
