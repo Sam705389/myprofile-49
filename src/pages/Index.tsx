@@ -83,21 +83,23 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
-            <a 
-              href="https://vteam.store" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
-            >
-              VTeam Manifest App / Modded Steam
-            </a>
+          <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10 flex flex-col items-center justify-center gap-4">
             <Button 
               className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30"
             >
               Game List
             </Button>
+            <div className="flex items-center gap-2">
+              <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
+              <a 
+                href="https://vteam.store" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
+              >
+                VTeam Manifest App / Modded Steam
+              </a>
+            </div>
           </div>
         </div>
       </div>
