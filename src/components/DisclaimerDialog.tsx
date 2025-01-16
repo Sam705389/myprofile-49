@@ -19,11 +19,11 @@ export const DisclaimerDialog = () => {
   return (
     <Dialog open={open} modal={true}>
       <DialogContent 
-        className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[90vw] max-w-[500px] rounded-xl bg-gradient-to-b from-black via-black to-black/95 border border-red-500/20 shadow-2xl backdrop-blur-xl"
+        className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[90vw] max-w-[500px] rounded-xl bg-black border border-red-500/20 shadow-2xl backdrop-blur-xl"
         onPointerDownOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-xl opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-orange-500/5 rounded-xl" />
         
         <DialogHeader className="p-8 relative">          
           <DialogTitle className="text-3xl font-bold text-center bg-gradient-to-r from-red-500 via-orange-400 to-red-500 bg-clip-text text-transparent mb-6">
@@ -31,11 +31,11 @@ export const DisclaimerDialog = () => {
           </DialogTitle>
           
           <DialogDescription className="space-y-8">
-            <div className="text-base text-white/90 leading-relaxed bg-white/5 p-6 rounded-lg border border-white/10">
+            <div className="text-base text-white/90 leading-relaxed bg-black/40 p-6 rounded-lg border border-white/10">
               This website is for informational purposes only. We are not responsible for any consequences that may arise from using the provided information.
             </div>
             
-            <div className="relative p-6 bg-red-950/30 rounded-lg border border-red-500/30 shadow-lg">
+            <div className="relative p-6 bg-black/40 rounded-lg border border-red-500/30 shadow-lg">
               <div className="absolute -top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full flex items-center gap-2 text-sm font-semibold">
                 <AlertTriangle className="w-4 h-4" />
                 WARNING
