@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Play, Pause, Music2, List } from "lucide-react";
+import { Play, Pause, List } from "lucide-react";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { toast } from "sonner";
 
 const SONGS = [
@@ -21,7 +20,6 @@ const SONGS = [
 
 export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showInput, setShowInput] = useState(false);
   const [showSongList, setShowSongList] = useState(false);
   const [songUrl, setSongUrl] = useState("");
   const [currentSong, setCurrentSong] = useState("");
@@ -36,7 +34,7 @@ export function BackgroundMusic() {
   
   const togglePlay = async () => {
     if (!audioRef.current || !songUrl) {
-      toast.error("Please select a song or enter a valid URL first", {
+      toast.error("Please select a song first", {
         duration: 3000
       });
       return;
@@ -92,17 +90,6 @@ export function BackgroundMusic() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2">
-      {showInput && (
-        <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2 flex gap-2">
-          <Input
-            type="text"
-            placeholder="Enter song URL..."
-            value={songUrl}
-            onChange={(e) => setSongUrl(e.target.value)}
-            className="w-64 text-sm bg-transparent border-white/20"
-          />
-        </div>
-      )}
       {showSongList && (
         <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2 absolute bottom-full right-0 mb-2 w-64">
           <div className="space-y-2">
@@ -125,14 +112,6 @@ export function BackgroundMusic() {
         onClick={() => setShowSongList(!showSongList)}
       >
         <List className="h-6 w-6 text-red-500" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm"
-        onClick={() => setShowInput(!showInput)}
-      >
-        <Music2 className="h-6 w-6 text-red-500" />
       </Button>
       <Button
         variant="ghost"
