@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import VisitorCounter from "@/components/VisitorCounter";
 import { MemberList } from "@/components/MemberList";
 import { Search, GamepadIcon } from "lucide-react";
+import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { DisclaimerDialog } from "@/components/DisclaimerDialog";
@@ -22,7 +23,13 @@ const Index = () => {
     const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
     
+    toast.success("Game found! Starting download...", {
+      duration: 2500,
+    });
+    
     window.location.href = fullUrl;
+    setAppId(""); // Reset the input field
+    setIsSearching(false);
   };
 
   return (
