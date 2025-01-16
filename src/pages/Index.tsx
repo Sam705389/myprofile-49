@@ -23,11 +23,24 @@ const Index = () => {
     const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
     
-    toast.success("Game found! Starting download...", {
-      duration: 2500,
-    });
+    try {
+      const response = await fetch(fullUrl, { method: 'HEAD' });
+      if (response.ok) {
+        toast.success("Game found! Starting download...", {
+          duration: 2500,
+        });
+        window.location.href = fullUrl;
+      } else {
+        toast.error("Game not available! Please check the game list for available games.", {
+          duration: 3500,
+        });
+      }
+    } catch (error) {
+      toast.error("Game not available! Please check the game list for available games.", {
+        duration: 3500,
+      });
+    }
     
-    window.location.href = fullUrl;
     setAppId(""); // Reset the input field
     setIsSearching(false);
   };
