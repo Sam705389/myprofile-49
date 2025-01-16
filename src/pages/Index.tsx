@@ -14,7 +14,18 @@ const Index = () => {
   const [logs, setLogs] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const checkGameAvailability = async (appId: string) => {
+    try {
+      const url = `https://cysaw.top/uploads/${appId}.zip`;
+      const response = await fetch(url, { method: 'HEAD' });
+      return response.ok;
+    } catch (error) {
+      console.error('Error checking game availability:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!appId.trim()) {
       toast.error("Please Put App ID So I Can Find The Game Pookie", {
@@ -26,23 +37,25 @@ const Index = () => {
 
     setIsSearching(true);
     const timestamp = new Date().toLocaleString();
-    toast.promise(
-      new Promise((resolve) => {
-        setTimeout(resolve, 2000);
-      }),
-      {
-        loading: 'Finding the game...',
-        success: 'Game found!',
-        error: 'Error finding game',
-        duration: 2500,
-      }
-    );
-
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId}`, ...prev]);
-    
-    setTimeout(() => {
-      setIsSearching(false);
-    }, 2000);
+
+    const isGameAvailable = await checkGameAvailability(appId);
+
+    if (isGameAvailable) {
+      toast.success('Game found! Starting download...', {
+        duration: 2500,
+      });
+      setLogs(prev => [`${timestamp} [ Success ] Game found at APP ID: ${appId}`, ...prev]);
+      window.location.href = `https://cysaw.top/uploads/${appId}.zip`;
+    } else {
+      toast.error('Game not available. Please check the App ID.', {
+        icon: <AlertOctagon className="text-red-500" />,
+        duration: 2500,
+      });
+      setLogs(prev => [`${timestamp} [ Error ] Game not found for APP ID: ${appId}`, ...prev]);
+    }
+
+    setIsSearching(false);
   };
 
   return (
@@ -50,6 +63,7 @@ const Index = () => {
       <DisclaimerDialog />
       <VisitorCounter />
       <BackgroundMusic />
+      
       <div 
         className="absolute inset-0 opacity-25"
         style={{
