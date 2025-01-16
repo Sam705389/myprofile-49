@@ -10,6 +10,33 @@ export function BackgroundMusic() {
   const [songUrl, setSongUrl] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
+  const getYouTubeVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const isYouTubeUrl = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be');
+  };
+
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const url = e.target.value;
+    setSongUrl(url);
+
+    if (isYouTubeUrl(url)) {
+      const videoId = getYouTubeVideoId(url);
+      if (videoId) {
+        // Convert YouTube URL to audio stream URL
+        const audioUrl = `https://youtube-dl.org/downloads/audio/${videoId}`;
+        setSongUrl(audioUrl);
+        console.log("YouTube URL detected, converted to audio stream:", audioUrl);
+      } else {
+        toast.error("Invalid YouTube URL");
+      }
+    }
+  };
+  
   const togglePlay = async () => {
     if (!audioRef.current || !songUrl) {
       toast.error("Please enter a valid song URL first");
@@ -21,12 +48,14 @@ export function BackgroundMusic() {
         await audioRef.current.play();
         setIsPlaying(true);
         toast.success("Now Playing");
+        console.log("Started playing:", songUrl);
       } else {
         audioRef.current.pause();
         setIsPlaying(false);
         toast("Paused", {
           description: "Music playback paused"
         });
+        console.log("Paused playback");
       }
     } catch (error) {
       console.error("Playback error:", error);
@@ -36,6 +65,7 @@ export function BackgroundMusic() {
 
   useEffect(() => {
     if (songUrl) {
+      console.log("Setting up new audio source:", songUrl);
       if (audioRef.current) {
         audioRef.current.pause();
         setIsPlaying(false);
@@ -45,8 +75,8 @@ export function BackgroundMusic() {
       audio.volume = 0.5;
       audioRef.current = audio;
 
-      // Add error handling for invalid URLs
-      audio.onerror = () => {
+      audio.onerror = (e) => {
+        console.error("Audio error:", e);
         toast.error("Invalid audio URL. Please check the link and try again.");
         setSongUrl("");
       };
@@ -59,9 +89,9 @@ export function BackgroundMusic() {
         <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2 flex gap-2">
           <Input
             type="text"
-            placeholder="Enter song URL..."
+            placeholder="Enter song URL (YouTube or direct audio)..."
             value={songUrl}
-            onChange={(e) => setSongUrl(e.target.value)}
+            onChange={handleUrlChange}
             className="w-64 text-sm bg-transparent border-white/20"
           />
         </div>
