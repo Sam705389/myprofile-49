@@ -7,6 +7,7 @@ import { Search, GamepadIcon, AlertOctagon } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
+import { DisclaimerDialog } from "@/components/DisclaimerDialog";
 
 const Index = () => {
   const [appId, setAppId] = useState("");
@@ -18,7 +19,7 @@ const Index = () => {
     if (!appId.trim()) {
       toast.error("Please Put App ID So I Can Find The Game Pookie", {
         icon: <AlertOctagon className="text-red-500" />,
-        duration: 3000,
+        duration: 2500,
       });
       return;
     }
@@ -33,7 +34,7 @@ const Index = () => {
         loading: 'Finding the game...',
         success: 'Game found!',
         error: 'Error finding game',
-        duration: 3000,
+        duration: 2500,
       }
     );
 
@@ -46,6 +47,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-black p-4 overflow-hidden">
+      <DisclaimerDialog />
       <VisitorCounter />
       <BackgroundMusic />
       <div 
