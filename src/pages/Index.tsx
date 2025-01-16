@@ -14,7 +14,7 @@ const Index = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!appId.trim()) {
-      toast.error("PLEASE put App ID so I can find page Pookie =[ ", {
+      toast.error("Please put App ID so I can find page Pookie =[ ", {
         icon: <AlertOctagon className="text-red-500" />,
       });
       return;
