@@ -21,15 +21,27 @@ const Index = () => {
     setIsSearching(true);
     const timestamp = new Date().toLocaleString();
     const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
+    
+    // Log the search attempt
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
-    
-    toast.success("Game found! Starting download...", {
-      duration: 2500,
-    });
-    
-    window.location.href = fullUrl;
-    setAppId(""); // Reset the input field
-    setIsSearching(false);
+
+    // Simulate a brief delay to check availability (500ms)
+    setTimeout(() => {
+      // After "Finding APP ID" message, show download status
+      if (appId.trim()) {
+        toast.success("Download should have started!", {
+          duration: 2500,
+        });
+        window.location.href = fullUrl;
+      } else {
+        toast.error("Game not available! Please check the game list.", {
+          duration: 2500,
+        });
+      }
+      
+      setAppId(""); // Reset the input field
+      setIsSearching(false);
+    }, 500);
   };
 
   return (
