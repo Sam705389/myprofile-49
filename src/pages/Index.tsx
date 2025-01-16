@@ -3,15 +3,42 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import VisitorCounter from "@/components/VisitorCounter";
 import { MemberList } from "@/components/MemberList";
+import { Search, GamepadIcon, AlertOctagon } from "lucide-react";
+import { toast } from "sonner";
 
 const Index = () => {
   const [appId, setAppId] = useState("");
   const [logs, setLogs] = useState<string[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!appId.trim()) {
+      toast.error("Please put App ID so I can find page Pookie =[ ", {
+        icon: <AlertOctagon className="text-red-500" />,
+      });
+      return;
+    }
+
+    setIsSearching(true);
     const timestamp = new Date().toLocaleString();
+    toast.promise(
+      new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      }),
+      {
+        loading: 'Finding the game...',
+        success: 'Game found!',
+        error: 'Error finding game',
+      }
+    );
+
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId}`, ...prev]);
+    
+    // Simulate search completion
+    setTimeout(() => {
+      setIsSearching(false);
+    }, 2000);
   };
 
   return (
@@ -61,11 +88,14 @@ const Index = () => {
                 value={appId}
                 onChange={(e) => setAppId(e.target.value)}
                 className="flex-1 h-12 bg-black/40 border-red-500/30 focus:border-red-500/50 rounded-xl text-base placeholder:text-gray-400 transform hover:translate-y-[-2px] transition-all duration-300 focus:ring-2 focus:ring-red-500/30"
+                disabled={isSearching}
               />
               <Button 
                 type="submit"
-                className="h-12 px-8 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30"
+                className="h-12 px-8 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
+                disabled={isSearching}
               >
+                <Search className={`w-5 h-5 ${isSearching ? 'animate-spin' : ''}`} />
                 Submit
               </Button>
             </div>
@@ -85,19 +115,20 @@ const Index = () => {
 
           <div className="text-center text-sm bg-black/20 p-4 rounded-xl border border-red-500/10 flex flex-col items-center justify-center gap-4">
             <Button 
-              className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30"
+              className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
             >
+              <GamepadIcon className="w-5 h-5" />
               Game List
             </Button>
             <div className="flex items-center gap-2">
-              <span className="text-red-300/90">This Web Was Made By </span>
+              <span className="text-red-300/90 text-lg">This Web Was Made By </span>
               <a 
                 href="https://samvibes.shop/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300"
+                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300 text-xl"
                 style={{
-                  textShadow: '0 0 10px rgba(234, 56, 76, 0.5)'
+                  textShadow: '0 0 15px rgba(234, 56, 76, 0.8)'
                 }}
               >
                 Sam
