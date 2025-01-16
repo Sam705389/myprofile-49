@@ -120,14 +120,14 @@ const Index = () => {
               Game List
             </Button>
             <div className="flex items-center gap-2 bg-black/30 px-4 py-2 rounded-lg border border-red-500/20">
-              <span className="text-red-300/90 text-base font-medium tracking-wide">
+              <span className="text-red-300/90 text-sm font-medium tracking-wide">
                 This Web Was Made By
               </span>
               <a 
                 href="https://samvibes.shop/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300 text-lg relative"
+                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300 text-base relative"
                 style={{
                   textShadow: '0 0 15px rgba(234, 56, 76, 0.8)',
                   fontFamily: 'system-ui, -apple-system, sans-serif',
