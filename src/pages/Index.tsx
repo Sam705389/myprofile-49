@@ -51,12 +51,6 @@ const Index = () => {
             <p className="text-sm text-red-300/90 font-medium px-6 py-3 rounded-lg bg-black/40 border border-red-500/10 tracking-wide shadow-lg shadow-red-500/5">
               If there are bug pls report us on our discord
             </p>
-
-            <Button 
-              className="h-12 px-8 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30"
-            >
-              Game List
-            </Button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -89,16 +83,23 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10">
-            <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
-            <a 
-              href="https://vteam.store" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-black/40 p-4 rounded-xl border border-red-500/10">
+            <div className="flex items-center gap-4">
+              <span className="text-red-300/90 text-sm">Need DLC? Achievement? Go check out </span>
+              <a 
+                href="https://vteam.store" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium text-sm"
+              >
+                VTeam Manifest App / Modded Steam
+              </a>
+            </div>
+            <Button 
+              className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 whitespace-nowrap"
             >
-              VTeam Manifest App / Modded Steam
-            </a>
+              Game List
+            </Button>
           </div>
         </div>
       </div>
