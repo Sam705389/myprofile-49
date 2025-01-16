@@ -25,9 +25,7 @@ export const DisclaimerDialog = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-xl opacity-50" />
         
-        <DialogHeader className="p-8 relative">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-t-xl" />
-          
+        <DialogHeader className="p-8 relative">          
           <DialogTitle className="text-3xl font-bold text-center bg-gradient-to-r from-red-500 via-orange-400 to-red-500 bg-clip-text text-transparent mb-6">
             Disclaimer
           </DialogTitle>
