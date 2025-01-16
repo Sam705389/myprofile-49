@@ -8,6 +8,15 @@ import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { DisclaimerDialog } from "@/components/DisclaimerDialog";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Index = () => {
   const [appId, setAppId] = useState("");
@@ -50,8 +59,7 @@ const Index = () => {
       <VisitorCounter />
       <BackgroundMusic />
       
-      <div 
-        className="absolute inset-0 opacity-25"
+      <div className="absolute inset-0 opacity-25"
         style={{
           backgroundImage: `url('/lovable-uploads/11a8b27f-ceb0-48bf-b56f-5c3090d7ca0c.png')`,
           backgroundSize: 'cover',
@@ -128,12 +136,29 @@ const Index = () => {
           </div>
 
           <div className="text-center text-sm bg-black/20 p-4 rounded-xl border border-red-500/10 flex flex-col items-center justify-center gap-4">
-            <Button 
-              className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
-            >
-              <GamepadIcon className="w-5 h-5" />
-              Game List
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button 
+                  className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
+                >
+                  <GamepadIcon className="w-5 h-5" />
+                  Game List
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="bg-black/90 border border-red-500/30">
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-xl text-red-500">Coming Soon!</AlertDialogTitle>
+                  <p className="text-sm text-white/80">
+                    The game list feature is currently under development. Check back soon to see all available games!
+                  </p>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogAction className="bg-red-500 hover:bg-red-600 text-white">
+                    Got it!
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <div className="flex items-center gap-2 bg-black/30 px-4 py-2 rounded-lg border border-red-500/20">
               <span className="text-red-300/90 text-sm font-medium tracking-wide">
                 This Web Was Made By
