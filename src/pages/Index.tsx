@@ -2,7 +2,7 @@ import { Avatar } from "@/components/Avatar";
 import { SocialLinks } from "@/components/SocialLinks";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { MemberList } from "@/components/MemberList";
-import { VisitorCounter } from "@/components/VisitorCounter";
+import VisitorCounter from "@/components/VisitorCounter";
 import { Crown, Code, Palette, Gamepad } from "lucide-react";
 
 const Index = () => {
