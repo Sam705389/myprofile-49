@@ -37,9 +37,10 @@ const Index = () => {
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="relative">
               <h1 
-                className="text-4xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-red-500 animate-text-shimmer"
+                className="text-5xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-red-500 animate-text-shimmer"
                 style={{
-                  textShadow: '0 0 30px rgba(234, 56, 76, 0.3)'
+                  textShadow: '0 0 30px rgba(234, 56, 76, 0.3)',
+                  letterSpacing: '0.05em'
                 }}
               >
                 SamVibes Manifest Gen
@@ -47,7 +48,7 @@ const Index = () => {
               <div className="absolute -inset-1 bg-red-500/20 blur-xl -z-10 rounded-full"></div>
             </div>
             
-            <p className="text-sm text-red-300/90 font-medium px-4 py-2 rounded-lg bg-black/40 border border-red-500/10 tracking-wide">
+            <p className="text-sm text-red-300/90 font-medium px-6 py-3 rounded-lg bg-black/40 border border-red-500/10 tracking-wide shadow-lg shadow-red-500/5">
               If there are bug pls report us on our discord
             </p>
           </div>
@@ -82,24 +83,24 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
             <Button
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 border border-purple-500/30"
+              className="w-full sm:w-auto h-12 px-8 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30"
             >
               Game List
             </Button>
-          </div>
 
-          <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10">
-            <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
-            <a 
-              href="https://vteam.store" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
-            >
-              VTeam Manifest App / Modded Steam
-            </a>
+            <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10 flex-1">
+              <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
+              <a 
+                href="https://vteam.store" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
+              >
+                VTeam Manifest App / Modded Steam
+              </a>
+            </div>
           </div>
         </div>
       </div>
