@@ -2,11 +2,13 @@ import { Avatar } from "@/components/Avatar";
 import { SocialLinks } from "@/components/SocialLinks";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { MemberList } from "@/components/MemberList";
+import { VisitorCounter } from "@/components/VisitorCounter";
 import { Crown, Code, Palette, Gamepad } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-black p-4 overflow-hidden">
+      <VisitorCounter />
       {/* Enhanced background with multiple layers */}
       <div 
         className="absolute inset-0 opacity-30"
