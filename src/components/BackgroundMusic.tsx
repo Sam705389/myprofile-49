@@ -19,6 +19,10 @@ const SONGS = [
   {
     title: "G.O.A.T. - Sidhu Moose Wala",
     url: "https://cdnsongs.com/music/data/Single_Track/202007/G_O_A_T/128/G_O_A_T_1.mp3"
+  },
+  {
+    title: "MATUSHKA ULTRAFUNK (Slowed + Reverb)",
+    url: "https://music.youtube.com/watch?v=GKc1EIflAdQ"
   }
 ];
 
