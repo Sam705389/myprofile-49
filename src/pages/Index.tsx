@@ -35,7 +35,6 @@ const Index = () => {
 
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId}`, ...prev]);
     
-    // Simulate search completion
     setTimeout(() => {
       setIsSearching(false);
     }, 2000);
@@ -58,7 +57,7 @@ const Index = () => {
       <MemberList />
       
       <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/70 rounded-xl backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/70 rounded-xl backdrop-blur-sm" />
         
         <div className="relative space-y-6">
           <div className="flex flex-col items-center text-center space-y-4">
@@ -72,7 +71,7 @@ const Index = () => {
               >
                 SamVibes Manifest Gen
               </h1>
-              <div className="absolute -inset-1 bg-red-500/20 blur-xl -z-10 rounded-full"></div>
+              <div className="absolute -inset-1 bg-red-500/20 blur-xl -z-10 rounded-full" />
             </div>
             
             <p className="text-sm text-red-300/90 font-medium px-6 py-3 rounded-lg bg-black/30 border border-red-500/10 tracking-wide shadow-lg shadow-red-500/5">
@@ -113,30 +112,31 @@ const Index = () => {
             </div>
           </div>
 
-        <div className="text-center text-sm bg-black/20 p-4 rounded-xl border border-red-500/10 flex flex-col items-center justify-center gap-4">
-          <Button 
-            className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
-          >
-            <GamepadIcon className="w-5 h-5" />
-            Game List
-          </Button>
-          <div className="flex items-center gap-2 bg-black/30 px-4 py-2 rounded-lg border border-red-500/20">
-            <span className="text-red-300/90 text-base font-medium tracking-wide">
-              This Web Was Made By
-            </span>
-            <a 
-              href="https://samvibes.shop/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300 text-lg relative"
-              style={{
-                textShadow: '0 0 15px rgba(234, 56, 76, 0.8)',
-                fontFamily: 'system-ui, -apple-system, sans-serif',
-                letterSpacing: '0.05em'
-              }}
+          <div className="text-center text-sm bg-black/20 p-4 rounded-xl border border-red-500/10 flex flex-col items-center justify-center gap-4">
+            <Button 
+              className="h-10 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 border border-red-500/30 flex items-center gap-2"
             >
-              Sam
-            </a>
+              <GamepadIcon className="w-5 h-5" />
+              Game List
+            </Button>
+            <div className="flex items-center gap-2 bg-black/30 px-4 py-2 rounded-lg border border-red-500/20">
+              <span className="text-red-300/90 text-base font-medium tracking-wide">
+                This Web Was Made By
+              </span>
+              <a 
+                href="https://samvibes.shop/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300 text-lg relative"
+                style={{
+                  textShadow: '0 0 15px rgba(234, 56, 76, 0.8)',
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  letterSpacing: '0.05em'
+                }}
+              >
+                Sam
+              </a>
+            </div>
           </div>
         </div>
       </div>
