@@ -46,7 +46,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-black p-4 overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4 overflow-hidden">
       <DisclaimerDialog />
       <VisitorCounter />
       <BackgroundMusic />
@@ -57,7 +57,6 @@ const Index = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'blur(4px)',
-          animation: 'pulse 8s ease-in-out infinite'
         }}
       />
       
