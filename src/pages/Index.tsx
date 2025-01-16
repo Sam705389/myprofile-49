@@ -42,13 +42,13 @@ const Index = () => {
                   textShadow: '0 0 30px rgba(234, 56, 76, 0.3)'
                 }}
               >
-                Manifest & Lua Generator
+                SamVibes Manifest Gen
               </h1>
               <div className="absolute -inset-1 bg-red-500/20 blur-xl -z-10 rounded-full"></div>
             </div>
             
-            <p className="text-sm text-red-300/90 font-medium px-4 py-2 rounded-lg bg-black/40 border border-red-500/10">
-              bug inquiries? question? jangan lupa baca informasi dibawah.
+            <p className="text-sm text-red-300/90 font-medium px-4 py-2 rounded-lg bg-black/40 border border-red-500/10 tracking-wide">
+              If there are bug pls report us on our discord
             </p>
           </div>
 
@@ -80,6 +80,14 @@ const Index = () => {
                 ))}
               </pre>
             </div>
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <Button
+              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium rounded-xl transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 border border-purple-500/30"
+            >
+              Game List
+            </Button>
           </div>
 
           <div className="text-center text-sm bg-black/40 p-4 rounded-xl border border-red-500/10">
