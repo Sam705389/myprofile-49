@@ -33,6 +33,33 @@ export function BackgroundMusic() {
   const [currentSong, setCurrentSong] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // Auto-play MATUSHKA ULTRAFUNK on component mount
+  useEffect(() => {
+    const matushkaSong = SONGS.find(song => song.title.includes("MATUSHKA"));
+    if (matushkaSong) {
+      console.log("Auto-playing Matushka song");
+      handleSongSelect(matushkaSong);
+      // Small delay to ensure audio is properly loaded
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.play()
+            .then(() => {
+              setIsPlaying(true);
+              toast.success(`Now Playing: ${matushkaSong.title}`, {
+                duration: 2500
+              });
+            })
+            .catch((error) => {
+              console.error("Auto-play error:", error);
+              toast.error("Unable to auto-play. Please try playing manually.", {
+                duration: 3000
+              });
+            });
+        }
+      }, 1000);
+    }
+  }, []);
+
   const handleSongSelect = (song: typeof SONGS[0]) => {
     setSongUrl(song.url);
     setCurrentSong(song.title);
