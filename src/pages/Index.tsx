@@ -17,31 +17,34 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-black p-4 overflow-hidden">
       <VisitorCounter />
-      <div className="absolute inset-0 opacity-30"
+      <div 
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `url('/lovable-uploads/11a8b27f-ceb0-48bf-b56f-5c3090d7ca0c.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(4px)',
+          filter: 'blur(8px)',
           animation: 'pulse 8s ease-in-out infinite'
         }}
       />
       
       <MemberList />
       
-      <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 rounded-xl backdrop-blur-xl"></div>
+      <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/70 to-black/90 rounded-xl backdrop-blur-xl"></div>
         
         <div className="relative space-y-6">
           <div className="flex flex-col items-center text-center space-y-4">
-            <h1 className="text-4xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-red-500 animate-text-shimmer"
+            <h1 
+              className="text-4xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-orange-400 to-red-500 animate-text-shimmer"
               style={{
                 textShadow: '0 0 30px rgba(234, 56, 76, 0.3)'
-              }}>
+              }}
+            >
               Manifest & Lua Generator
             </h1>
             
-            <p className="text-sm text-red-300/80 font-medium">
+            <p className="text-sm text-red-300/90 font-medium">
               bug inquiries? question? jangan lupa baca informasi dibawah.
             </p>
           </div>
@@ -53,7 +56,7 @@ const Index = () => {
                 placeholder="Enter your APP ID / URL"
                 value={appId}
                 onChange={(e) => setAppId(e.target.value)}
-                className="flex-1 h-12 bg-black/40 border-red-500/20 focus:border-red-500/40 rounded-xl text-base placeholder:text-gray-400 transform hover:translate-y-[-2px] transition-all duration-300"
+                className="flex-1 h-12 bg-black/50 border-red-500/30 focus:border-red-500/50 rounded-xl text-base placeholder:text-gray-400 transform hover:translate-y-[-2px] transition-all duration-300"
               />
               <Button 
                 type="submit"
@@ -65,8 +68,8 @@ const Index = () => {
           </form>
 
           <div className="relative mt-6">
-            <div className="bg-black/40 rounded-xl p-5 h-[200px] overflow-y-auto custom-scrollbar border border-red-500/10">
-              <pre className="text-left font-mono text-sm text-green-400/90">
+            <div className="bg-black/60 rounded-xl p-5 h-[200px] overflow-y-auto custom-scrollbar border border-red-500/20">
+              <pre className="text-left font-mono text-sm text-green-400">
                 {logs.map((log, index) => (
                   <div key={index} className="py-1 px-2 rounded hover:bg-white/5 transition-all duration-200">
                     {log}
@@ -77,7 +80,7 @@ const Index = () => {
           </div>
 
           <div className="text-center text-sm">
-            <span className="text-red-300/80">Need DLC? Achievement? Go check out </span>
+            <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
             <a 
               href="https://vteam.store" 
               target="_blank" 
