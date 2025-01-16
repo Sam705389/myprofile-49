@@ -15,6 +15,10 @@ const SONGS = [
   {
     title: "295 - Sidhu Moose Wala",
     url: "https://s320.djpunjab.is/data/48/50470/297757/295%20-%20Sidhu%20Moose%20Wala.mp3"
+  },
+  {
+    title: "G.O.A.T. - Sidhu Moose Wala",
+    url: "https://cdnsongs.com/music/data/Single_Track/202007/G_O_A_T/128/G_O_A_T_1.mp3"
   }
 ];
 
