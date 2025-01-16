@@ -3,8 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import VisitorCounter from "@/components/VisitorCounter";
 import { MemberList } from "@/components/MemberList";
-import { Search, GamepadIcon, AlertOctagon } from "lucide-react";
-import { toast } from "sonner";
+import { Search, GamepadIcon } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { DisclaimerDialog } from "@/components/DisclaimerDialog";
@@ -14,49 +13,16 @@ const Index = () => {
   const [logs, setLogs] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
-  const checkGameAvailability = async (appId: string) => {
-    try {
-      const url = `https://cysaw.top/uploads/${appId}.zip`;
-      const response = await fetch(url, { method: 'HEAD' });
-      return response.ok;
-    } catch (error) {
-      console.error('Error checking game availability:', error);
-      return false;
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!appId.trim()) {
-      toast.error("Please Put App ID So I Can Find The Game Pookie", {
-        icon: <AlertOctagon className="text-red-500" />,
-        duration: 2500,
-      });
-      return;
-    }
+    if (!appId.trim()) return;
 
     setIsSearching(true);
     const timestamp = new Date().toLocaleString();
     const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
     setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
-
-    const isGameAvailable = await checkGameAvailability(appId);
-
-    if (isGameAvailable) {
-      toast.success(`Game found! Redirecting to: ${fullUrl}`, {
-        duration: 2500,
-      });
-      setLogs(prev => [`${timestamp} [ Success ] Game found at: ${fullUrl}`, ...prev]);
-      window.location.href = fullUrl;
-    } else {
-      toast.error(`Game not available at: ${fullUrl}`, {
-        icon: <AlertOctagon className="text-red-500" />,
-        duration: 2500,
-      });
-      setLogs(prev => [`${timestamp} [ Error ] Game not found at: ${fullUrl}`, ...prev]);
-    }
-
-    setIsSearching(false);
+    
+    window.location.href = fullUrl;
   };
 
   return (
