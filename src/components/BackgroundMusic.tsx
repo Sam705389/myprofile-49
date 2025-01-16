@@ -1,45 +1,42 @@
 import { useState, useEffect, useRef } from "react";
-import { Play, Pause, Music2 } from "lucide-react";
+import { Play, Pause, Music2, List } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { toast } from "sonner";
 
+const SONGS = [
+  {
+    title: "Wavy - Karan Aujla",
+    url: "https://s320.djpunjab.is/data/48/56545/306006/Wavy%20-%20Karan%20Aujla.mp3"
+  },
+  {
+    title: "No Love - Shubh",
+    url: "https://s320.djpunjab.is/data/48/50470/297756/No%20Love%20-%20Shubh.mp3"
+  },
+  {
+    title: "295 - Sidhu Moose Wala",
+    url: "https://s320.djpunjab.is/data/48/50470/297757/295%20-%20Sidhu%20Moose%20Wala.mp3"
+  }
+];
+
 export function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showInput, setShowInput] = useState(false);
+  const [showSongList, setShowSongList] = useState(false);
   const [songUrl, setSongUrl] = useState("");
+  const [currentSong, setCurrentSong] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  
-  const getYouTubeVideoId = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
 
-  const isYouTubeUrl = (url: string) => {
-    return url.includes('youtube.com') || url.includes('youtu.be');
-  };
-
-  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const url = e.target.value;
-    setSongUrl(url);
-
-    if (isYouTubeUrl(url)) {
-      const videoId = getYouTubeVideoId(url);
-      if (videoId) {
-        // Convert YouTube URL to audio stream URL
-        const audioUrl = `https://youtube-dl.org/downloads/audio/${videoId}`;
-        setSongUrl(audioUrl);
-        console.log("YouTube URL detected, converted to audio stream:", audioUrl);
-      } else {
-        toast.error("Invalid YouTube URL");
-      }
-    }
+  const handleSongSelect = (song: typeof SONGS[0]) => {
+    setSongUrl(song.url);
+    setCurrentSong(song.title);
+    setShowSongList(false);
+    console.log("Selected song:", song.title);
   };
   
   const togglePlay = async () => {
     if (!audioRef.current || !songUrl) {
-      toast.error("Please enter a valid song URL first");
+      toast.error("Please select a song or enter a valid URL first");
       return;
     }
 
@@ -47,8 +44,8 @@ export function BackgroundMusic() {
       if (!isPlaying) {
         await audioRef.current.play();
         setIsPlaying(true);
-        toast.success("Now Playing");
-        console.log("Started playing:", songUrl);
+        toast.success(currentSong ? `Now Playing: ${currentSong}` : "Now Playing");
+        console.log("Started playing:", currentSong || songUrl);
       } else {
         audioRef.current.pause();
         setIsPlaying(false);
@@ -59,7 +56,7 @@ export function BackgroundMusic() {
       }
     } catch (error) {
       console.error("Playback error:", error);
-      toast.error("Unable to play this audio. Please check the URL and try again.");
+      toast.error("Unable to play this audio. Please try another song.");
     }
   };
 
@@ -77,8 +74,9 @@ export function BackgroundMusic() {
 
       audio.onerror = (e) => {
         console.error("Audio error:", e);
-        toast.error("Invalid audio URL. Please check the link and try again.");
+        toast.error("Unable to play this song. Please try another one.");
         setSongUrl("");
+        setCurrentSong("");
       };
     }
   }, [songUrl]);
@@ -89,13 +87,36 @@ export function BackgroundMusic() {
         <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2 flex gap-2">
           <Input
             type="text"
-            placeholder="Enter song URL (YouTube or direct audio)..."
+            placeholder="Enter song URL..."
             value={songUrl}
-            onChange={handleUrlChange}
+            onChange={(e) => setSongUrl(e.target.value)}
             className="w-64 text-sm bg-transparent border-white/20"
           />
         </div>
       )}
+      {showSongList && (
+        <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2 absolute bottom-full right-0 mb-2 w-64">
+          <div className="space-y-2">
+            {SONGS.map((song, index) => (
+              <button
+                key={index}
+                onClick={() => handleSongSelect(song)}
+                className="w-full text-left px-3 py-2 text-sm text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                {song.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="bg-black/50 hover:bg-black/70 backdrop-blur-sm"
+        onClick={() => setShowSongList(!showSongList)}
+      >
+        <List className="h-6 w-6 text-red-500" />
+      </Button>
       <Button
         variant="ghost"
         size="icon"
