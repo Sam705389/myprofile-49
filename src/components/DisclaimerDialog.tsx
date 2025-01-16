@@ -9,19 +9,13 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export const DisclaimerDialog = () => {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const hasSeenDisclaimer = localStorage.getItem("hasSeenDisclaimer");
-    if (!hasSeenDisclaimer) {
-      setOpen(true);
-    }
-  }, []);
+  const [open, setOpen] = useState(true); // Changed to always start as true
 
   const handleAccept = () => {
-    localStorage.setItem("hasSeenDisclaimer", "true");
     setOpen(false);
   };
+
+  // Removed localStorage check to ensure dialog always shows
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
