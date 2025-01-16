@@ -37,22 +37,23 @@ const Index = () => {
 
     setIsSearching(true);
     const timestamp = new Date().toLocaleString();
-    setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId}`, ...prev]);
+    const fullUrl = `https://cysaw.top/uploads/${appId}.zip`;
+    setLogs(prev => [`${timestamp} [ Information ] Finding APP ID: ${appId} (${fullUrl})`, ...prev]);
 
     const isGameAvailable = await checkGameAvailability(appId);
 
     if (isGameAvailable) {
-      toast.success('Game found! Starting download...', {
+      toast.success(`Game found! Redirecting to: ${fullUrl}`, {
         duration: 2500,
       });
-      setLogs(prev => [`${timestamp} [ Success ] Game found at APP ID: ${appId}`, ...prev]);
-      window.location.href = `https://cysaw.top/uploads/${appId}.zip`;
+      setLogs(prev => [`${timestamp} [ Success ] Game found at: ${fullUrl}`, ...prev]);
+      window.location.href = fullUrl;
     } else {
-      toast.error('Game not available. Please check the App ID.', {
+      toast.error(`Game not available at: ${fullUrl}`, {
         icon: <AlertOctagon className="text-red-500" />,
         duration: 2500,
       });
-      setLogs(prev => [`${timestamp} [ Error ] Game not found for APP ID: ${appId}`, ...prev]);
+      setLogs(prev => [`${timestamp} [ Error ] Game not found at: ${fullUrl}`, ...prev]);
     }
 
     setIsSearching(false);
@@ -82,7 +83,7 @@ const Index = () => {
           className="w-24 h-24 sm:w-32 sm:h-32"
         />
       </div>
-      
+
       <MemberList />
       
       <div className="glass-card p-8 max-w-2xl w-full mx-auto space-y-8 relative z-10 mt-20">
