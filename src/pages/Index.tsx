@@ -49,7 +49,7 @@ const Index = () => {
             </div>
             
             <p className="text-sm text-red-300/90 font-medium px-6 py-3 rounded-lg bg-black/30 border border-red-500/10 tracking-wide shadow-lg shadow-red-500/5">
-              If there are bug pls report us on our discord
+              If There Are Bugs Please Report Us On Our Discord
             </p>
           </div>
 
@@ -90,14 +90,17 @@ const Index = () => {
               Game List
             </Button>
             <div className="flex items-center gap-2">
-              <span className="text-red-300/90">Need DLC? Achievement? Go check out </span>
+              <span className="text-red-300/90">This Web Was Made By </span>
               <a 
-                href="https://vteam.store" 
+                href="https://samvibes.shop/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-red-300 underline transform hover:scale-105 transition-transform duration-300 font-medium"
+                className="text-red-400 hover:text-red-300 font-bold transform hover:scale-105 transition-transform duration-300"
+                style={{
+                  textShadow: '0 0 10px rgba(234, 56, 76, 0.5)'
+                }}
               >
-                VTeam Manifest App / Modded Steam
+                Sam
               </a>
             </div>
           </div>
