@@ -36,7 +36,9 @@ export function BackgroundMusic() {
   
   const togglePlay = async () => {
     if (!audioRef.current || !songUrl) {
-      toast.error("Please select a song or enter a valid URL first");
+      toast.error("Please select a song or enter a valid URL first", {
+        duration: 3000
+      });
       return;
     }
 
@@ -44,19 +46,24 @@ export function BackgroundMusic() {
       if (!isPlaying) {
         await audioRef.current.play();
         setIsPlaying(true);
-        toast.success(currentSong ? `Now Playing: ${currentSong}` : "Now Playing");
+        toast.success(currentSong ? `Now Playing: ${currentSong}` : "Now Playing", {
+          duration: 2500
+        });
         console.log("Started playing:", currentSong || songUrl);
       } else {
         audioRef.current.pause();
         setIsPlaying(false);
         toast("Paused", {
-          description: "Music playback paused"
+          description: "Music playback paused",
+          duration: 2000
         });
         console.log("Paused playback");
       }
     } catch (error) {
       console.error("Playback error:", error);
-      toast.error("Unable to play this audio. Please try another song.");
+      toast.error("Unable to play this audio. Please try another song.", {
+        duration: 3000
+      });
     }
   };
 
@@ -74,7 +81,9 @@ export function BackgroundMusic() {
 
       audio.onerror = (e) => {
         console.error("Audio error:", e);
-        toast.error("Unable to play this song. Please try another one.");
+        toast.error("Unable to play this song. Please try another one.", {
+          duration: 3000
+        });
         setSongUrl("");
         setCurrentSong("");
       };
